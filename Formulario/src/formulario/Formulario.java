@@ -6,6 +6,10 @@
 package formulario;
 
 import static formulario.CalendarTabbedPane.createAndShowGUI;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -18,7 +22,7 @@ public class Formulario {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO code application logic here
         //JFrame form = new JFrame();
         //form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +33,7 @@ public class Formulario {
         //form.setLocationRelativeTo(null);
         
         //IntForm interfaz = new IntForm();
+        
         createAndShowGUI();
     
     }

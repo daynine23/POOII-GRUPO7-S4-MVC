@@ -8,7 +8,10 @@ package formulario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -20,6 +23,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -134,16 +139,22 @@ public class CalendarTabbedPane extends JPanel{
     
     protected JComponent makeTablePanel() {
         String[][] data = {
-            { "09/25/2024", "Fiesta", "DAILY", "gianny.romie@gmail.com", "OFF" },
-            { "01/04/2026", "Cumpleaños de Mario", "DAILY", "gianny.romie@gmail.com", "ON" },
-            { "01/04/2026", "50 años de Sagasti", "WEEKLY", "gianny.romie@gmail.com", "ON" }
+            { null, null, null, null, null },
+            { null, null, null, null, null },
+            { null, null, null, null, null }
         };
  
         // Column Names
         String[] columnNames = { "Date", "Description", "Frequency", "E-mail", "Alarm"};
  
+        
+        
         // Initializing the JTable
-        eTable = new JTable(data, columnNames);
+        
+        TableModel dataModel = new DefaultTableModel(data, columnNames);
+        eTable = new JTable();
+        eTable.setModel(dataModel);
+        eTable = fillEventTable();
         eTable.setBounds(30, 40, 200, 300);
  
         // adding it to JScrollPane
@@ -167,6 +178,47 @@ public class CalendarTabbedPane extends JPanel{
      * this method should be invoked from the
      * event dispatch thread.
      */
+    
+    
+    private JTable fillEventTable() {
+        
+        EventsTab et = new EventsTab();
+        List<String> registerList = et.chargeEventList();
+        
+        DefaultTableModel modelResult = (DefaultTableModel) eTable.getModel();
+        modelResult.setRowCount(0);
+        eTable.setModel(modelResult);
+        
+        for(int i=0; i < registerList.size(); i++){
+                //boolean duplicado = false;
+                String line = registerList.get(i);
+                String[] parts = new String[0];
+                parts = line.split(",");
+                
+                String part1 = parts[0];
+                String part2 = parts[1];
+                String part3 = parts[2];
+                String part4 = parts[3];
+                String part5 = parts[4];
+                
+                
+                modelResult.setRowCount(registerList.size());
+                //Setea ISBN
+                modelResult.setValueAt(part1, i, 0);
+                //Setea Titulo
+                modelResult.setValueAt(part2, i, 1);
+                //Setea si es Leido
+                modelResult.setValueAt(part3, i, 2);
+                //Setea si Lo tengo
+                modelResult.setValueAt(part4, i, 3);
+                //Setea Autor
+                modelResult.setValueAt(part5, i, 4);
+            }
+        
+        eTable.setModel(modelResult);
+        return eTable;
+    }
+    
     public static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("TabbedPane");

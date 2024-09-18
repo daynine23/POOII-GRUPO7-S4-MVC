@@ -1,0 +1,3 @@
+09/25/2024,Fiesta,DAILY,gianny.romie@gmail.com,false
+01/04/2026,Cumpleaños de Guaripolo,DAILY,gianny.romie@gmail.com,true
+01/04/2026,50 años de Sagasti,WEEKLY,gianny.romie@gmail.com,true
