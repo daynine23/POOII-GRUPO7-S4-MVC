@@ -8,6 +8,7 @@ package formulario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -28,6 +29,7 @@ public class CalendarTabbedPane extends JPanel{
     JLabel lab1, lab2, lab3, lab4;
     JTextField txtEvent, txtEmail, txtDate;
     JRadioButton rbDaily, rbWeekly, rbMonthly;
+    ButtonGroup bGroup;
     JCheckBox ckAlarm;
     JButton btnSave, btnClean;
     JTabbedPane tabbedPane;
@@ -72,6 +74,7 @@ public class CalendarTabbedPane extends JPanel{
         
         rbDaily = new JRadioButton("Daily");
         rbDaily.setBounds(150, 250, 80, 20);
+        rbDaily.setSelected(true);
         //rbDaily.setOpaque(true);
         //rbDaily.setBackground(Color.red);
         
@@ -80,6 +83,12 @@ public class CalendarTabbedPane extends JPanel{
         
         rbMonthly = new JRadioButton("Monthly");
         rbMonthly.setBounds(350, 250, 80, 20);
+        
+        bGroup = new ButtonGroup();
+        
+        bGroup.add(rbDaily);
+        bGroup.add(rbWeekly);
+        bGroup.add(rbMonthly);
         
         ckAlarm = new JCheckBox("Alarm");
         ckAlarm.setBounds(40, 300, 100, 20);
